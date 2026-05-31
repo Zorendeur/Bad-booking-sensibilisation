@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bad-Booking - Bac à sable Accessibilité</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="inaccessible">
+    <!-- 4. Navigation Clavier : Lien d'évitement (inactif par défaut via display:none en CSS) -->
+    <a href="#main" id="skip-link" class="skip-link">Aller au contenu principal</a>
+
+    <!-- 1. Sémantique : Utilisation de div au lieu de header -->
+    <div class="header" id="header">
+        <div class="logo">Bad-Booking</div>
+        
+        <!-- 6. ARIA : aria-hidden="true" erroné sur la navigation qui masque les liens aux lecteurs d'écran -->
+        <div class="nav" id="nav" aria-hidden="true">
+            <ul>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Vols</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        
+        <!-- 3. Médias : Bouton icône sans aria-label ou texte alternatif -->
+        <button class="icon-btn" id="user-btn">👤</button>
+    </div>
+
+    <!-- 1. Sémantique : div au lieu de main -->
+    <div class="main-content" id="main">
+        <!-- 1. Sémantique : Faux titre H1 (texte en gras simulant un titre) -->
+        <div class="fake-h1" id="main-title"><b>Réservez vos pires vacances</b></div>
+
+        <!-- 3. Médias : Image décorative avec alt polluant -->
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="jolie vague de fond très bleue qui nous rappelle l'océan" id="deco-img" class="decorative-img">
+
+        <section class="booking-section">
+            <!-- 1. Sémantique : Saut de niveau (H4 au lieu de H2) -->
+            <h4 id="section-title">Notre offre du moment</h4>
+            
+            <div class="card">
+                <!-- 3. Médias : Image informative sans alt -->
+                <img src="https://images.unsplash.com/photo-1542314831-c6a4d14d8c85?w=400&q=80" id="info-img" class="info-img">
+                
+                <div class="card-body">
+                    <!-- 2. Visuel : Contraste insuffisant (gris clair sur blanc géré en CSS) -->
+                    <p class="low-contrast" id="desc">Hôtel "Le Cauchemar", 3 nuits. Réservation non annulable. Profitez d'une vue sur le mur d'en face.</p>
+
+                    <!-- 2. Visuel : Alerte uniquement par la couleur (pastille rouge) -->
+                    <div class="stock-alert">
+                        Disponibilité : <span class="red-dot" id="stock-dot"></span>
+                        <span id="stock-text" class="hidden">Épuisé</span>
+                    </div>
+
+                    <!-- 6. ARIA : Zone dynamique muette (sans aria-live) -->
+                    <div id="notification-area" class="notification-area"></div>
+
+                    <!-- 7. Mobile : Boutons minuscules collés (géré en CSS) -->
+                    <div class="actions">
+                        <!-- 4. Clavier : div tabindex="0" sans gestion de la touche Entrée -->
+                        <div class="fake-btn tiny-btn" id="fake-btn" tabindex="0">Ajouter</div>
+                        <button class="tiny-btn" id="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <!-- 5. Formulaires : Placeholders seuls, pas de label. tabindex chaotiques. -->
+            <h4 id="form-title">Vos informations</h4>
+            <form id="booking-form" onsubmit="event.preventDefault();">
+                <div class="input-group" id="name-group">
+                    <input type="text" id="name" placeholder="Nom complet" tabindex="2">
+                </div>
+                <div class="input-group" id="email-group">
+                    <input type="email" id="email" placeholder="Adresse email" tabindex="1">
+                </div>
+
+                <!-- 5. Formulaires : Cases à cocher non groupées sémantiquement -->
+                <div id="options-group" class="options-group">
+                    <div class="fake-legend" id="options-legend">Options supplémentaires :</div>
+                    <div>
+                        <input type="checkbox" id="opt1"> <span class="fake-label">Assurance annulation (inutile)</span>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="opt2"> <span class="fake-label">Bagage en soute</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Valider la réservation</button>
+            </form>
+        </section>
+
+        <section class="table-section">
+            <!-- 5. Tableaux : Pas de th, pas de caption, pas de scope -->
+            <h4 id="table-title">Tarifs</h4>
+            <table id="pricing-table">
+                <tr id="table-header-row">
+                    <td>Saison</td>
+                    <td>Prix standard</td>
+                    <td>Prix premium</td>
+                </tr>
+                <tr>
+                    <td>Basse</td>
+                    <td>500€</td>
+                    <td>800€</td>
+                </tr>
+                <tr>
+                    <td>Haute</td>
+                    <td>900€</td>
+                    <td>1500€</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="faq-section">
+            <!-- 6. ARIA / Composants : Accordéon sans ARIA, simple div cliquable -->
+            <h4 id="faq-title">Foire Aux Questions</h4>
+            <div class="accordion" id="accordion">
+                <div class="acc-item">
+                    <div class="acc-trigger" id="acc-trigger-1">Puis-je être remboursé en cas de problème ?</div>
+                    <div class="acc-panel" id="acc-panel-1" style="display: none;">
+                        Non, conformément à nos CGV écrites en police de taille 2, aucun remboursement n'est possible.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 1. Sémantique : div au lieu de footer -->
+    <div class="footer" id="footer">
+        <p>© 2026 Bad-Booking - Tous droits réservés.</p>
+    </div>
+
+    <!-- 4. Navigation Clavier : Modale publicitaire avec reverse focus trap -->
+    <div class="modal" id="ad-modal">
+        <div class="modal-content">
+            <h2>OFFRE EXCLUSIVE !</h2>
+            <p>Abonnez-vous à notre newsletter pour obtenir -10% de réduction.</p>
+            <input type="email" placeholder="Votre email" id="modal-email">
+            <button id="close-modal" class="close-btn">Fermer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

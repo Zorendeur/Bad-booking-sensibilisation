@@ -1,0 +1,605 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap');
+
+/* Variables de base - Style Neo-Brutaliste inspiré de damienlanda.fr */
+:root {
+    --bg-color: #FAF6F0;
+    --text-color: #1A1A1A;
+    --low-contrast-text: #e0e0e0; /* Encore plus clair pour bien marquer l'erreur (illisible sur fond crème) */
+    --accessible-text: #1A1A1A;   
+    --primary-blue: #2E419E;
+    --primary-orange: #E59560;
+    --lavender: #E0E4F7;
+    --peach: #F5C38B;
+    --border-color: #000000;
+    
+    /* Ombres dures typiques du Neo-Brutalisme */
+    --shadow-small: 4px 4px 0px 0px var(--border-color);
+    --shadow-large: 8px 8px 0px 0px var(--border-color);
+    --shadow-hover: 12px 12px 0px 0px var(--border-color);
+    --shadow-orange: 4px 4px 0px 0px var(--primary-orange);
+    
+    --border-width: 3px;
+    --radius: 12px;
+}
+
+/* ==========================================================================
+   4. NAVIGATION AU CLAVIER : FOCUS VISUEL
+   ========================================================================== */
+/* Erreur : Suppression globale et sauvage des outlines */
+body.inaccessible * {
+    outline: none !important;
+}
+
+/* Correction : Restauration des focus clairs et neo-brutalistes en mode accessible */
+body.accessible *:focus-visible {
+    outline: 4px solid var(--primary-orange) !important;
+    outline-offset: 4px;
+}
+
+body {
+    font-family: 'Outfit', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   4. NAVIGATION AU CLAVIER : LIEN D'ÉVITEMENT
+   ========================================================================== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-blue);
+    color: #fff;
+    padding: 15px 30px;
+    z-index: 100;
+    font-weight: 900;
+    font-size: 1.2em;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50px;
+    box-shadow: var(--shadow-small);
+    transition: top 0.3s;
+}
+/* Erreur : Le lien est totalement supprimé du flux */
+body.inaccessible .skip-link {
+    display: none; 
+}
+/* Correction : Le lien est hors écran, mais devient visible au focus */
+body.accessible .skip-link {
+    display: block;
+    top: -100px; 
+}
+body.accessible .skip-link:focus {
+    top: 20px;
+}
+
+/* ==========================================================================
+   STRUCTURE GÉNÉRALE NEO-BRUTALISTE
+   ========================================================================== */
+.header, header {
+    background: var(--bg-color);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--border-width) solid var(--border-color);
+}
+.logo {
+    font-size: 2em;
+    font-weight: 900;
+    color: var(--text-color);
+}
+.nav ul, nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+.nav a, nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    background: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 2px solid var(--border-color);
+    box-shadow: 2px 2px 0px 0px var(--border-color);
+    transition: all 0.2s;
+}
+.nav a:hover, nav a:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px 0px var(--border-color);
+    background: var(--primary-orange);
+    color: white;
+}
+.icon-btn {
+    background: white;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: var(--shadow-small);
+    transition: all 0.2s;
+}
+.icon-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+    background: var(--lavender);
+}
+
+.main-content, main {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.fake-h1, h1 {
+    font-size: 4em;
+    font-weight: 900;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    line-height: 1.1;
+}
+h4, h2 {
+    font-size: 2.2em;
+    font-weight: 900;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: var(--primary-blue);
+    display: inline-block;
+    background: var(--lavender);
+    padding: 10px 25px;
+    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-small);
+}
+
+/* Sections colorées */
+.booking-section {
+    background: var(--peach);
+    padding: 50px;
+    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-large);
+    margin-bottom: 50px;
+}
+.booking-section h4, .booking-section h2 {
+    background: white;
+    margin-top: 0;
+}
+
+/* Images & Cards Neo-brutalist */
+.decorative-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 50px;
+    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-large);
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 30px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-large);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-hover);
+}
+@media (min-width: 768px) {
+    .card {
+        flex-direction: row;
+        gap: 40px;
+    }
+}
+.info-img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border-color);
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   2. VISUEL ET DESIGN : CONTRASTE & COULEUR SEULE
+   ========================================================================== */
+body.inaccessible .low-contrast {
+    color: var(--low-contrast-text); /* Illisible */
+}
+body.accessible .low-contrast {
+    color: var(--accessible-text); /* Lisible */
+    font-weight: 700;
+}
+
+.stock-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    font-weight: 900;
+    font-size: 1.2em;
+}
+/* Pastille sans alternative textuelle en mode inaccessible */
+.red-dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-orange);
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+}
+.hidden {
+    display: none;
+}
+body.accessible .hidden {
+    display: inline;
+    color: var(--primary-orange);
+    background: white;
+    padding: 2px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    box-shadow: 2px 2px 0 0 var(--border-color);
+}
+
+/* Notification dynamique */
+.notification-area {
+    margin-top: 20px;
+    color: var(--primary-blue);
+    font-weight: 900;
+    min-height: 25px;
+    font-size: 1.1em;
+}
+
+/* ==========================================================================
+   7. CONTRAINTES MOBILES : ZONES TACTILES
+   ========================================================================== */
+.actions {
+    display: flex;
+    gap: 2px; /* Erreur : boutons minuscules et collés */
+    margin-top: 30px;
+}
+body.accessible .actions {
+    gap: 20px; /* Correction : espacement sécurisé */
+    flex-wrap: wrap;
+}
+
+.tiny-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    /* Erreur : zones tactiles ridicules */
+    padding: 2px 5px;
+    font-size: 10px;
+}
+.fake-btn {
+    background: var(--primary-orange);
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+body.accessible .tiny-btn,
+body.accessible .fake-btn {
+    /* Correction : zone tactile WCAG 44x44px minimum + Neo-Brutalisme */
+    min-width: 44px;
+    min-height: 44px;
+    padding: 15px 35px;
+    font-size: 1.1em;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-small);
+    transition: all 0.2s;
+}
+body.accessible .tiny-btn:hover,
+body.accessible .fake-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+}
+
+/* ==========================================================================
+   5. FORMULAIRES ET TABLEAUX
+   ========================================================================== */
+.form-section {
+    background: white;
+    padding: 50px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-large);
+    margin-bottom: 50px;
+}
+.input-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin-bottom: 10px;
+    font-weight: 900;
+    font-size: 1.2em;
+}
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 18px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    font-size: 1.1em;
+    font-family: inherit;
+    background: var(--bg-color);
+    box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.05);
+}
+input[type="text"]:focus, input[type="email"]:focus {
+    outline: none;
+    background: white;
+    border-color: var(--primary-blue);
+}
+.options-group {
+    margin-bottom: 35px;
+}
+.fake-legend {
+    font-weight: 900;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+fieldset {
+    border: var(--border-width) solid var(--border-color);
+    padding: 25px;
+    border-radius: var(--radius);
+    background: var(--lavender);
+    box-shadow: var(--shadow-small);
+}
+legend {
+    font-weight: 900;
+    font-size: 1.1em;
+    padding: 5px 20px;
+    background: white;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50px;
+    box-shadow: 2px 2px 0 0 var(--border-color);
+}
+.submit-btn {
+    background: var(--primary-orange);
+    color: white;
+    padding: 20px 40px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1.3em;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: var(--shadow-small);
+    transition: all 0.2s;
+    display: inline-block;
+    width: 100%;
+}
+.submit-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 40px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-large);
+    background: white;
+}
+td, th {
+    border-bottom: var(--border-width) solid var(--border-color);
+    border-right: var(--border-width) solid var(--border-color);
+    padding: 18px;
+    font-size: 1.1em;
+}
+td:last-child, th:last-child {
+    border-right: none;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+body.inaccessible td {
+    text-align: left;
+}
+body.accessible th {
+    background: var(--lavender);
+    text-align: left;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: var(--primary-blue);
+}
+caption {
+    font-weight: 900;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: left;
+    color: var(--primary-blue);
+}
+
+/* ==========================================================================
+   6. COMPOSANTS COMPLEXES (ACCORDÉON)
+   ========================================================================== */
+.faq-section {
+    margin-bottom: 50px;
+}
+.accordion {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-large);
+    background: white;
+}
+.acc-item {
+    border-bottom: var(--border-width) solid var(--border-color);
+}
+.acc-item:last-child {
+    border-bottom: none;
+}
+.acc-trigger {
+    background: var(--peach);
+    padding: 25px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 1.3em;
+    transition: background 0.2s;
+}
+.acc-trigger:hover {
+    background: #f7d2a6;
+}
+.acc-panel {
+    padding: 25px;
+    background: white;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+/* Styles pour la version accessible (vrai bouton) */
+button.acc-trigger {
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+/* ==========================================================================
+   MODALE (FOCUS TRAP)
+   ========================================================================== */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal.open {
+    display: flex;
+}
+.modal-content {
+    background: white;
+    padding: 50px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 15px 15px 0px 0px var(--primary-orange); /* Ombre pop orange */
+    transform: rotate(-2deg); /* Touche Brutaliste désaxée */
+}
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-blue);
+    font-size: 3em;
+    font-weight: 900;
+    line-height: 1.1;
+}
+.modal-content input {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.close-btn {
+    background: var(--primary-orange);
+    color: white;
+    border: var(--border-width) solid var(--border-color);
+    padding: 15px 35px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1.3em;
+    box-shadow: var(--shadow-small);
+    transition: all 0.2s;
+}
+.close-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+}
+
+/* Footer */
+.footer, footer {
+    text-align: center;
+    padding: 50px;
+    background: var(--primary-blue);
+    color: white;
+    margin-top: 80px;
+    border-top: var(--border-width) solid var(--border-color);
+    font-weight: 900;
+    font-size: 1.2em;
+}
+
+/* Bouton secret */
+.secret-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.1; /* Quasiment invisible */
+    z-index: 9999;
+    background: var(--primary-blue);
+    color: white;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: var(--shadow-small);
+    transition: all 0.2s;
+}
+.secret-toggle:hover, .secret-toggle:focus {
+    opacity: 1;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        flex-direction: column;
+    }
+    .info-img {
+        max-width: 100%;
+    }
+    .fake-h1, h1 {
+        font-size: 2.5em;
+    }
+    .modal-content {
+        transform: none;
+        margin: 20px;
+    }
+}
+
+/* Erreurs de formulaire accessibles */
+.error-text {
+    color: #d32f2f;
+    font-weight: 900;
+    margin-top: 5px;
+    display: block;
+    font-size: 0.9em;
+}
+body.accessible input[aria-invalid="true"] {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px #d32f2f;
+}
